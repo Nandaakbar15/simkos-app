@@ -1,0 +1,13 @@
+<div class="card-hover bg-gradient-to-br from-primary/20 to-secondary/10 glass rounded-2xl p-6 transition-all duration-500 animate-fade-up"
+    style="animation-delay:0.1s">
+    <div class="flex items-start justify-between mb-4">
+        <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-dollar-sign text-primary text-lg"></i>
+        </div>
+        <span class="bg-green-500/20 text-green-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+            <i class="fas fa-arrow-up mr-1"></i>12.5%
+        </span>
+    </div>
+    <h3 class="text-3xl font-bold mb-1">$124,563</h3>
+    <p class="text-white/40 text-sm">Total Kamar</p>
+</div>
