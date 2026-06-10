@@ -19,5 +19,10 @@ class Room extends Model
         return $this->belongsTo(Kosts::class, 'kost_id');
     }
 
+    public function rentals()
+    {
+        return $this->hasMany(Rentals::class, 'id');
+    }
+
     use HasFactory;
 }

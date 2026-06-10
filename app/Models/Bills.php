@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable('nama', 'nik', 'no_hp', 'alamat', 'pekerjaan', 'foto_ktp')]
+#[Fillable('rental_id', 'bulan', 'tahun', 'nominal', 'jatuh_tempo', 'status')]
 
-class Tenants extends Model
+class Bills extends Model
 {
-    /** @use HasFactory<\Database\Factories\TenantsFactory> */
-    protected $table = 'tb_tenants';
+    /** @use HasFactory<\Database\Factories\BillsFactory> */
+    protected $table = 'tb_bills';
     protected $primaryKey = 'id';
 
     public function rentals()
     {
-        return $this->hasMany(Rentals::class, 'tenant_id');
+        return $this->belongsTo(Rentals::class, 'rental_id');
     }
 
     use HasFactory;

@@ -37,6 +37,21 @@
                 <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
                 <span class="sidebar-text transition-all duration-300">Data Penyewa</span>
             </a>
+            <a href="/dashboard/sewa_kontrak/data_sewa_kontrak"
+                class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
+                <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
+                <span class="sidebar-text transition-all duration-300">Data Sewa / Kontrak</span>
+            </a>
+            <a href="/dashboard/tagihan/data_tagihan"
+                class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
+                <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
+                <span class="sidebar-text transition-all duration-300">Data Tagihan</span>
+            </a>
+            <a href="/dashboard/pembayaran/data_pembayaran"
+                class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
+                <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
+                <span class="sidebar-text transition-all duration-300">Data Pembayaran</span>
+            </a>
         </div>
     </nav>
 

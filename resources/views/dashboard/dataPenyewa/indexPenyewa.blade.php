@@ -58,13 +58,18 @@
                                 <td class="py-4 text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <a href="/dashboard/penyewa/view_form_edit_data_penyewa/{{ $item->id }}"
-                                            class="inline-block rounded-lg text-blue-400 px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 transition text-xs font-medium">
+                                            class="inline-block rounded-lg shadow-lg text-white px-4 py-2 bg-blue-500 hover:bg-blue-700 transition text-xs font-medium">
                                             Edit
                                         </a>
-                                        <button
-                                            class="inline-block rounded-lg text-red-400 px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 transition text-xs font-medium">
-                                            Delete
-                                        </button>
+                                        <form action="/dashboard/penyewa/delete_data_penyewa/{{ $item->id }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="inline-block rounded-lg shadow-lg text-white px-4 py-2 bg-red-500 hover:bg-red-700 transition text-xs font-medium">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

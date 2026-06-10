@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TenantsController extends Controller
 {
@@ -77,19 +78,16 @@ class TenantsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Tenants $tenants)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Tenants $tenants)
     {
-        //
+        $name = Auth::user()->name;
+
+        return view("dashboard.dataPenyewa.editDataPenyewa", [
+            'name' => $name,
+            'tenants' => $tenants
+        ]);
     }
 
     /**
@@ -97,7 +95,42 @@ class TenantsController extends Controller
      */
     public function update(Request $request, Tenants $tenants)
     {
-        //
+        $validateData = $request->validate([
+            'nama' => 'required|string',
+            'nik' => 'required|string',
+            'no_hp' => 'required|string',
+            'alamat' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'foto_ktp' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            if($request->hasFile('foto_ktp')) {
+
+                if($request->gambarLama) {
+                    Storage::disk('public')->delete($request->gambarLama);
+                }
+
+                $file = $request->file('foto_ktp');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('images', $fileName, 'public');
+                $validateData['foto_ktp'] = '/storage/' . $path;
+            }
+
+            $tenants->update($validateData);
+
+            DB::commit();
+
+            return redirect('/dashboard/penyewa/data_penyewa')->with('success', 'Berhasil mengubah data!');
+        } catch(Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error : ' . $e->getMessage());
+
+            return back()->withInput()->with('error', 'Error, terjadi kesalahan pada sistem!');
+        }
     }
 
     /**
@@ -105,6 +138,8 @@ class TenantsController extends Controller
      */
     public function destroy(Tenants $tenants)
     {
-        //
+        $tenants->delete();
+
+        return redirect('/dashboard/penyewa/data_penyewa')->with('success', 'Berhasil menghapus data!');
     }
 }

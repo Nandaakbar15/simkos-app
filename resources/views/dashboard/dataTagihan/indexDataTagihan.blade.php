@@ -4,13 +4,13 @@
     <div class="p-8">
 
         <div class="mb-6 anim-fade-up" style="animation-delay: 0.05s;">
-            <h1 class="font-display text-3xl font-bold text-white tracking-tight">Halaman Data Kosts</h1>
+            <h1 class="font-display text-3xl font-bold text-white tracking-tight">Halaman Data Tagihan</h1>
         </div>
 
         <div class="mb-6">
-            <a href="/dashboard/kosts/view_form_tambah_data_kosts"
+            <a href="/dashboard/tagihan/view_form_tambah_data_tagihan"
                 class="inline-block text-white rounded-lg shadow-lg px-4 py-2.5 bg-blue-600 hover:bg-blue-700 font-medium text-sm transition">
-                <i class="fas fa-plus mr-2"></i> Tambah Data Kosts
+                <i class="fas fa-plus mr-2"></i> Tambah Data Tagihan
             </a>
         </div>
 
@@ -18,8 +18,9 @@
 
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h3 class="text-lg font-semibold text-white">Daftar Kosts</h3>
-                    <p class="text-white/40 text-sm">Kelola data kosts dan informasi mengenai kosts</p>
+                    <h3 class="text-lg font-semibold text-white">Daftar Tagihan</h3>
+                    <p class="text-white/40 text-sm">Kelola data tagihan dan informasi mengenai status tagihan para penyewa
+                    </p>
                 </div>
             </div>
 
@@ -28,32 +29,44 @@
                     <thead>
                         <tr class="text-xs text-white/40 uppercase tracking-wider border-b border-white/5">
                             <th class="pb-4 font-medium pl-2">ID</th>
-                            <th class="pb-4 font-medium">Nama Kosts</th>
-                            <th class="pb-4 font-medium max-w-[250px]">Alamat</th>
-                            <th class="pb-4 font-medium">Jumlah Kamar</th>
+                            <th class="pb-4 font-medium">Nama Penyewa</th>
+                            <th class="pb-4 font-medium">Nomor Kamar</th>
+                            <th class="pb-4 font-medium">Bulan</th>
+                            <th class="pb-4 font-medium max-w-[250px]">Tahun</th>
+                            <th class="pb-4 font-medium max-w-[250px]">Jatuh Tempo</th>
+                            <th class="pb-4 font-medium">Status</th>
                             <th class="pb-4 font-medium text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
-                        @foreach ($kosts as $item)
+                        @foreach ($bills as $item)
                             <tr class="hover:bg-white/[0.02] transition">
                                 <td class="py-4 font-semibold text-sm text-white/50 pl-2">#{{ $item->id }}</td>
-                                <td class="py-4 font-semibold text-sm text-white">{{ $item->nama_kosts }}</td>
-                                <td class="py-4 text-sm text-white/60 max-w-[250px] break-words pr-4">{{ $item->alamat }}
+                                <td class="py-4 font-semibold text-sm text-white">{{ $item->rentals->tenants->nama }}</td>
+                                <td class="py-4 font-semibold text-sm text-white">#{{ $item->rentals->room->nomor_kamar }}
                                 </td>
-                                <td class="py-4 text-sm text-white/70">{{ $item->jumlah_kamar }}</td>
+                                <td class="py-4 font-semibold text-sm text-white">#{{ $item->bulan }}</td>
+                                <td class="py-4 text-sm text-white/70 max-w-[250px] break-words pr-4">
+                                    {{ $item->tahun }}
+                                </td>
+                                <td class="py-4 text-sm text-white/70 max-w-[250px] break-words pr-4">
+                                    {{ $item->jatuh_tempo }}
+                                </td>
+                                <td class="py-4 text-sm text-white/70 max-w-[250px] break-words pr-4">
+                                    {{ $item->status }}
+                                </td>
                                 <td class="py-4 text-center">
                                     <div class="flex items-center justify-center gap-2">
-                                        <a href="/dashboard/kosts/view_form_edit_data_kosts/{{ $item->id }}"
+                                        <a href="/dashboard/tagihan/view_form_edit_data_tagihan/{{ $item->id }}"
                                             class="inline-block rounded-lg shadow-lg text-white px-4 py-2 bg-blue-500 hover:bg-blue-700 transition text-xs font-medium">
                                             Edit
                                         </a>
-                                        <form action="/dashboard/kamar/delete_data_kamar/{{ $item->id }}"
+                                        <form action="/dashboard/tagihan/delete_data_tagihan/{{ $item->id }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button
-                                                class="inline-block rounded-lg shadow-lg text-white px-3 py-1.5 bg-red-500 hover:bg-red-700 transition text-xs font-medium">
+                                                class="inline-block rounded-lg shadow-lg text-white px-4 py-2 bg-red-500 hover:bg-red-700 transition text-xs font-medium">
                                                 Delete
                                             </button>
                                         </form>
@@ -66,7 +79,7 @@
             </div>
 
             <div class="flex justify-end mt-6 border-t border-white/5 pt-4">
-                {{ $kosts->links() }}
+                {{ $bills->links() }}
             </div>
 
         </div>
