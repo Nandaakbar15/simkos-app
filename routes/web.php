@@ -23,18 +23,22 @@ Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/home', [DashboardController::class, 'home'])->name('dashboard');
 
-        // url data user
-        Route::prefix('user')->group(function () {
-            Route::get('/data_user', [UserController::class, 'index']);
-        });
+        Route::middleware('role:admin')->group(function () {
+            // url data user
+            Route::prefix('user')->group(function () {
+                Route::get('/data_user', [UserController::class, 'index']);
+                Route::get('/view_form_tambah_data_user_owner', [UserController::class, 'create']);
+                Route::post('/tambah_data_user_owner', [UserController::class, 'store']);
+            });
 
-        // url data kosts
-        Route::prefix('kosts')->group(function () {
-            Route::get('/data_kosts', [KostsController::class, 'index']);
-            Route::get('/view_form_tambah_data_kosts', [KostsController::class, 'create']);
-            Route::post('/tambah_data_kosts', [KostsController::class, 'store']);
-            Route::get('/view_form_edit_data_kosts/{kosts}', [KostsController::class, 'edit']);
-            Route::delete('/delete_data_kosts/{kosts}', [KostsController::class, 'destroy']);
+            // url data kosts
+            Route::prefix('kosts')->group(function () {
+                Route::get('/data_kosts', [KostsController::class, 'index']);
+                Route::get('/view_form_tambah_data_kosts', [KostsController::class, 'create']);
+                Route::post('/tambah_data_kosts', [KostsController::class, 'store']);
+                Route::get('/view_form_edit_data_kosts/{kosts}', [KostsController::class, 'edit']);
+                Route::delete('/delete_data_kosts/{kosts}', [KostsController::class, 'destroy']);
+            });
         });
 
         // url data kamar
@@ -79,6 +83,11 @@ Route::middleware('auth')->group(function () {
         // url data pembayaran
         Route::prefix('pembayaran')->group(function () {
             Route::get('/data_pembayaran', [PaymentsController::class, 'index']);
+            Route::get('/view_form_tambah_data_pembayaran', [PaymentsController::class, 'create']);
+            Route::post('/tambah_data_pembayaran', [PaymentsController::class, 'store']);
+            Route::get('/view_form_edit_data_pembayaran/{payments}', [PaymentsController::class, 'edit']);
+            Route::put('/edit_data_pembayaran/{payments}', [PaymentsController::class, 'update']);
+            Route::delete('/delete_data_pembayaran/{payments}', [PaymentsController::class, 'destroy']);
         });
     });
 });

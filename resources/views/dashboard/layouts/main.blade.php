@@ -26,15 +26,29 @@
                 }
             }
         </script>
+        <style>
+            /* Sidebar collapsed state */
+            .sidebar-collapsed {
+                transform: translateX(-100%);
+            }
+        </style>
     </head>
 
-    <body class="bg-darker min-h-screen text-white">
+    <body class="bg-darker min-h-screen text-white" x-data="{ sidebarOpen: true }">
 
-        @include('dashboard.partials.sidebar')
+        <!-- Sidebar with Alpine.js control -->
+        <aside id="sidebar" 
+            class="fixed top-0 left-0 h-full w-64 glass z-50 flex flex-col transition-all duration-500"
+            :class="{ 'sidebar-collapsed': !sidebarOpen }">
+            @include('dashboard.partials.sidebar')
+        </aside>
 
         <!-- Main Content -->
-        <main id="mainContent" class="ml-64 transition-all duration-500 min-h-screen">
-            @include('dashboard.partials.header')
+        <main id="mainContent" class="transition-all duration-500" :class="{ 'ml-64': sidebarOpen, 'ml-0': !sidebarOpen }">
+            <!-- Header with toggle button -->
+            <div x-data="{ sidebarOpen: true }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen">
+                @include('dashboard.partials.header')
+            </div>
 
             <!-- Dashboard Content -->
             <div class="p-8">
@@ -44,6 +58,12 @@
                 @yield('content')
             </div>
         </main>
+
+        <!-- Backdrop for mobile -->
+        <div class="fixed inset-0 bg-black/50 md:hidden transition-opacity duration-300 z-40"
+            :class="{ 'hidden': sidebarOpen, 'block': !sidebarOpen }"
+            @click="sidebarOpen = true"
+            x-cloak></div>
 
         <script src="{{ asset('js/script.js') }}"></script>
     </body>

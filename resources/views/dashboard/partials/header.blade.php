@@ -1,13 +1,19 @@
 <!-- Top Bar -->
-<header class="sticky top-0 z-40 glass border-b border-white/5 px-8 py-4 flex items-center justify-between">
+<header class="sticky top-0 z-40 glass border-b border-white/5 px-8 py-4 flex items-center justify-between"
+    x-data="{ sidebarOpen: true }">
     <div class="flex items-center gap-4">
-        <button onclick="toggleSidebar()"
+        <button @click="sidebarOpen = !sidebarOpen; $dispatch('toggle-sidebar')"
             class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-white/10 transition">
             <i class="fas fa-bars"></i>
         </button>
         <div>
-            <h1 class="text-xl font-bold">Selamat Datang, Admin 👋</h1>
-            <p class="text-sm text-white/40">Ini adalah halaman admin</p>
+            @if (auth()->user()->role === 'admin')
+                <h1 class="text-xl font-bold">Selamat Datang, Admin 👋</h1>
+                <p class="text-sm text-white/40">Ini adalah halaman admin</p>
+            @else
+                <h1 class="text-xl font-bold">Selamat Datang, {{ $name }}</h1>
+                <p class="text-sm text-white/40">Ini adalah halaman untuk user yang rolenya adalah owner</p>
+            @endif
         </div>
     </div>
 

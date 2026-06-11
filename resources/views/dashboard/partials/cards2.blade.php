@@ -5,9 +5,9 @@
             <i class="fas fa-shopping-bag text-emerald-400 text-lg"></i>
         </div>
         <span class="bg-green-500/20 text-green-400 text-xs font-semibold px-2.5 py-1 rounded-full">
-            <i class="fas fa-arrow-up mr-1"></i>8.2%
+            <i class="fas fa-arrow-up mr-1"></i>{{ $totalRooms > 0 ? round(($roomsOccupied / $totalRooms) * 100, 1) : 0 }}%
         </span>
     </div>
-    <h3 class="text-3xl font-bold mb-1">2,847</h3>
+    <h3 class="text-3xl font-bold mb-1">{{ $roomsOccupied }}</h3>
     <p class="text-white/40 text-sm">Kamar Terisi</p>
 </div>

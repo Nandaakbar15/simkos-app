@@ -1,11 +1,5 @@
-// Sidebar Toggle
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    const main = document.getElementById("mainContent");
-    sidebar.classList.toggle("sidebar-collapsed");
-    main.classList.toggle("ml-64");
-    main.classList.toggle("ml-20");
-}
+// Sidebar Toggle - Removed (now using Alpine.js)
+// Kept for reference if needed
 
 // Progress Bar Animation
 setTimeout(() => {

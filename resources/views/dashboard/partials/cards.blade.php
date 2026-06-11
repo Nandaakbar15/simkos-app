@@ -5,9 +5,9 @@
             <i class="fas fa-dollar-sign text-primary text-lg"></i>
         </div>
         <span class="bg-green-500/20 text-green-400 text-xs font-semibold px-2.5 py-1 rounded-full">
-            <i class="fas fa-arrow-up mr-1"></i>12.5%
+            <i class="fas fa-arrow-up mr-1"></i>{{ number_format($revenuePercentage, 1) }}%
         </span>
     </div>
-    <h3 class="text-3xl font-bold mb-1">$124,563</h3>
-    <p class="text-white/40 text-sm">Total Kamar</p>
+    <h3 class="text-3xl font-bold mb-1">Rp. {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
+    <p class="text-white/40 text-sm">Total Pendapatan</p>
 </div>

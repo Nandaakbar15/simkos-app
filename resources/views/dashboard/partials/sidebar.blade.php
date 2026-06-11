@@ -17,16 +17,20 @@
                 <i class="fas fa-home sidebar-icon text-primary w-5 text-center transition-all duration-300"></i>
                 <span class="sidebar-text font-medium transition-all duration-300">Dashboard</span>
             </a>
-            <a href="/dashboard/user/data_user"
-                class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
-                <i class="fas fa-chart-pie sidebar-icon w-5 text-center transition-all duration-300"></i>
-                <span class="sidebar-text transition-all duration-300">Data User</span>
-            </a>
-            <a href="/dashboard/kosts/data_kosts"
-                class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
-                <i class="fas fa-shopping-cart sidebar-icon w-5 text-center transition-all duration-300"></i>
-                <span class="sidebar-text transition-all duration-300">Data Kost</span>
-            </a>
+
+            {{-- MENU KHUSUS ADMIN --}}
+            @if (auth()->user()->role === 'admin')
+                <a href="/dashboard/user/data_user"
+                    class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
+                    <i class="fas fa-chart-pie sidebar-icon w-5 text-center transition-all duration-300"></i>
+                    <span class="sidebar-text transition-all duration-300">Data User</span>
+                </a>
+                <a href="/dashboard/kosts/data_kosts"
+                    class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
+                    <i class="fas fa-shopping-cart sidebar-icon w-5 text-center transition-all duration-300"></i>
+                    <span class="sidebar-text transition-all duration-300">Data Kost</span>
+                </a>
+            @endif
             <a href="/dashboard/kamar/data_kamar"
                 class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
                 <i class="fas fa-box sidebar-icon w-5 text-center transition-all duration-300"></i>
@@ -44,12 +48,12 @@
             </a>
             <a href="/dashboard/tagihan/data_tagihan"
                 class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
-                <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
+                <i class="fas fa-receipt sidebar-icon w-5 text-center transition-all duration-300"></i>
                 <span class="sidebar-text transition-all duration-300">Data Tagihan</span>
             </a>
             <a href="/dashboard/pembayaran/data_pembayaran"
                 class="nav-link sidebar-item flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white">
-                <i class="fas fa-users sidebar-icon w-5 text-center transition-all duration-300"></i>
+                <i class="fas fa-credit-card sidebar-icon w-5 text-center transition-all duration-300"></i>
                 <span class="sidebar-text transition-all duration-300">Data Pembayaran</span>
             </a>
         </div>
