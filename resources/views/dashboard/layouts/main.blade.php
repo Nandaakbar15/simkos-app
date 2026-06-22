@@ -34,7 +34,7 @@
         </style>
     </head>
 
-    <body class="bg-darker min-h-screen text-white" x-data="{ sidebarOpen: true }">
+    <body class="bg-darker min-h-screen text-white" x-data="{ sidebarOpen: true }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen">
 
         <!-- Sidebar with Alpine.js control -->
         <aside id="sidebar" 
@@ -46,9 +46,7 @@
         <!-- Main Content -->
         <main id="mainContent" class="transition-all duration-500" :class="{ 'ml-64': sidebarOpen, 'ml-0': !sidebarOpen }">
             <!-- Header with toggle button -->
-            <div x-data="{ sidebarOpen: true }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen">
-                @include('dashboard.partials.header')
-            </div>
+            @include('dashboard.partials.header')
 
             <!-- Dashboard Content -->
             <div class="p-8">

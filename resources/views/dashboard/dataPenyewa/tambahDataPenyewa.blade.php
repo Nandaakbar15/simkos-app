@@ -105,7 +105,7 @@
             </form>
         </div>
         <div class="mt-3">
-            <a href="/dashboard/kamar/data_kamar"
+            <a href="/dashboard/penyewa/data_penyewa"
                 class="inline-block text-white rounded-lg shadow-lg px-4 py-2 bg-blue-500 hover:bg-blue-700">Kembali</a>
         </div>
     </div>

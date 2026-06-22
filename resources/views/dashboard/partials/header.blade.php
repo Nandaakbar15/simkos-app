@@ -1,6 +1,5 @@
 <!-- Top Bar -->
-<header class="sticky top-0 z-40 glass border-b border-white/5 px-8 py-4 flex items-center justify-between"
-    x-data="{ sidebarOpen: true }">
+<header class="sticky top-0 z-40 glass border-b border-white/5 px-8 py-4 flex items-center justify-between">
     <div class="flex items-center gap-4">
         <button @click="sidebarOpen = !sidebarOpen; $dispatch('toggle-sidebar')"
             class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-white/10 transition">
